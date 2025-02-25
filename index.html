@@ -130,7 +130,7 @@
     
     <div class="container" style="display: none;" id="main-content">
         <div class="profile-pic"></div>
-        <h1 class="blinking-text" id="titleText">SEAR</h1>
+        <h1 id="titleText">SEAR</h1>
         <button class="btn" onclick="toggleInfo('bio')">BIO</button>
         <button class="btn" onclick="toggleInfo('links')">LINKS</button>
         <button class="btn" onclick="toggleInfo('projects')">PROJECTS</button>
@@ -142,42 +142,35 @@
             document.querySelector('.start-screen').style.display = 'none';
             document.getElementById("main-content").style.display = "flex";
             document.getElementById("bg-music").play();
-            sear();  // Inicia a função de animação
+            animateText();
         }
 
-<script>
-    function sear() {
-        let fullText = "SEAR";
-        let element = document.getElementById("titleText");
-        let i = 0;
-        let stage = 0; // 0: apagando até "S", 1: escrevendo até "SEAR"
+        function animateText() {
+            let fullText = "SEAR";
+            let element = document.getElementById("titleText");
+            let index = fullText.length;
+            let reverse = false;
 
-        setInterval(function() {
-            if (stage === 0) {
-                if (i < 3) { // Apaga até "S"
-                    i++;
+            function updateText() {
+                element.textContent = fullText.slice(0, index);
+                if (!reverse) {
+                    index--;
+                    if (index === 1) reverse = true;
                 } else {
-                    stage = 1;
-                    i--;
+                    index++;
+                    if (index === fullText.length) reverse = false;
                 }
-            } else if (stage === 1) {
-                if (i > 0) { // Volta a escrever até "SEAR"
-                    i--;
-                } else {
-                    stage = 0;
-                    i++;
-                }
+                setTimeout(updateText, 500);
             }
-            element.textContent = fullText.slice(0, fullText.length - i);
-        }, 500); 
-    }
-</script>
-
+            updateText();
+        }
 
         function toggleInfo(type) {
             const infoDiv = document.getElementById("info");
+            let content = "";
+
             if (type === 'bio') {
-                infoDiv.innerHTML = `
+                content = `
                     <p>IDENTITY: UNKNOWN_ERROR_404</p>
                     <p>LOCATION: 152.42.999.777</p>
                     <p>STATUS: ONLINE</p>
@@ -185,23 +178,28 @@
                     <p>LAST LOGIN: UNKNOWN</p>
                 `;
             } else if (type === 'links') {
-                infoDiv.innerHTML = `
+                content = `
                     <p><a href="https://github.com/" target="_blank">GitHub</a></p>
-                    <p><a href="https://discord.com/users/1287491084787781732" target="_blank">Sear discord</a></p>
+                    <p><a href="https://discord.com/users/1287491084787781732" target="_blank">Sear Discord</a></p>
                     <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
                     <p><a href="https://www.cybersecuritytraining.com/" target="_blank">Cyber Security Training</a></p>
                     <p><a href="https://www.nmap.org/" target="_blank">Nmap</a></p>
                 `;
             } else if (type === 'projects') {
-                infoDiv.innerHTML = `
+                content = `
                     <p>Project 1: <a href="#">O Lula</a></p>
                     <p>Project 2: <a href="#">O Bolsonaro</a></p>
-                    <p>Project 3: <a href="#">O Getúlio Vargas </a></p>
+                    <p>Project 3: <a href="#">O Getúlio Vargas</a></p>
                 `;
             }
 
-            // Toggle the display of the info div
-            infoDiv.style.display = infoDiv.style.display === 'block' ? 'none' : 'block';
+            if (infoDiv.innerHTML === content) {
+                infoDiv.style.display = 'none';
+                infoDiv.innerHTML = "";
+            } else {
+                infoDiv.innerHTML = content;
+                infoDiv.style.display = 'block';
+            }
         }
     </script>
 </body>
