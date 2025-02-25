@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Bio</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00ff00;
+            font-family: monospace;
+            text-align: center;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        .btn {
+            background-color: transparent;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .btn:hover {
+            background-color: #00ff00;
+            color: black;
+        }
+        #info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HACKER BIO</h1>
+        <button class="btn" onclick="showBio()">BIO</button>
+        <button class="btn" onclick="showLinks()">LINKS</button>
+        <button class="btn" onclick="clearInfo()">CLEAR</button>
+        <div id="info"></div>
+    </div>
+
+    <script>
+        function showBio() {
+            document.getElementById("info").innerHTML = `
+                <p>IDENTITY: UNKNOWN_ERROR_404</p>
+                <p>LOCATION: 152.42.999.777</p>
+                <p>STATUS: ONLINE</p>
+            `;
+        }
+        
+        function showLinks() {
+            document.getElementById("info").innerHTML = `
+                <p><a href="https://github.com/" target="_blank">GitHub</a></p>
+                <p><a href="https://www.hackthebox.com/" target="_blank">Hack The Box</a></p>
+                <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
+            `;
+        }
+        
+        function clearInfo() {
+            document.getElementById("info").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
