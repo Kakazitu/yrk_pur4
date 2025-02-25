@@ -47,7 +47,12 @@
             cursor: pointer;
             font-size: 18px;
             width: 200px;
-            transition: transform 0.2s;
+            transition: transform 0.2s, background 0.5s;
+            animation: btn-pulse 2s infinite alternate;
+        }
+        @keyframes btn-pulse {
+            0% { box-shadow: 0 0 5px #00ff00; }
+            100% { box-shadow: 0 0 20px #00ff00; }
         }
         .btn:hover {
             background-color: #00ff00;
@@ -88,6 +93,16 @@
             z-index: 1000;
             animation: text-fade 2s infinite alternate;
         }
+        h1 {
+            font-size: 36px;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px #00ff00;
+            animation: glitch 1s infinite alternate;
+        }
+        @keyframes glitch {
+            0% { transform: skewX(0deg); }
+            100% { transform: skewX(5deg); }
+        }
     </style>
 </head>
 <body>
@@ -103,6 +118,7 @@
         <h1>SEAR</h1>
         <button class="btn" onclick="showBio()">BIO</button>
         <button class="btn" onclick="showLinks()">LINKS</button>
+        <button class="btn" onclick="showProjects()">PROJECTS</button>
         <div id="info"></div>
     </div>
 
@@ -118,7 +134,7 @@
                 <p>IDENTITY: UNKNOWN_ERROR_404</p>
                 <p>LOCATION: 152.42.999.777</p>
                 <p>STATUS: ONLINE</p>
-                <p>SECURITY LEVEL: HIGH</p>
+                <p>SECURITY LEVEL: LOW KKKKKKK</p>
                 <p>LAST LOGIN: UNKNOWN</p>
             `;
         }
@@ -126,10 +142,18 @@
         function showLinks() {
             document.getElementById("info").innerHTML = `
                 <p><a href="https://github.com/" target="_blank">GitHub</a></p>
-                <p><a href="https://discord.com/users/1287491084787781732" target="_blank">SEAR Discord</a></p>
+                <p><a href="https://discord.com/users/1287491084787781732" target="_blank">Sear discord</a></p>
                 <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
                 <p><a href="https://www.cybersecuritytraining.com/" target="_blank">Cyber Security Training</a></p>
                 <p><a href="https://www.nmap.org/" target="_blank">Nmap</a></p>
+            `;
+        }
+        
+        function showProjects() {
+            document.getElementById("info").innerHTML = `
+                <p>Project 1: <a href="#">Dark Web Scanner</a></p>
+                <p>Project 2: <a href="#">AI-Based Encryption</a></p>
+                <p>Project 3: <a href="#">OSINT Tool</a></p>
             `;
         }
     </script>
