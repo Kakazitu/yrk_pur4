@@ -10,26 +10,33 @@
             color: #00ff00;
             font-family: monospace;
             text-align: center;
+            margin: 0;
+            padding: 0;
         }
         .container {
-            margin-top: 100px;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .profile-pic {
-            width: 100px;
-            height: 100px;
-            border: 2px solid #00ff00;
+            width: 120px;
+            height: 120px;
+            border: 3px solid #00ff00;
             border-radius: 50%;
             background: url('photo1.jpg') center/cover;
-            display: inline-block;
+            display: block;
+            margin-bottom: 15px;
         }
         .btn {
             background-color: transparent;
             border: 2px solid #00ff00;
             color: #00ff00;
-            padding: 10px 20px;
+            padding: 12px 25px;
             margin: 10px;
             cursor: pointer;
             font-size: 18px;
+            width: 200px;
         }
         .btn:hover {
             background-color: #00ff00;
@@ -37,6 +44,14 @@
         }
         #info {
             margin-top: 20px;
+            max-width: 80%;
+        }
+        a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -46,7 +61,6 @@
         <h1>SEAR</h1>
         <button class="btn" onclick="showBio()">BIO</button>
         <button class="btn" onclick="showLinks()">LINKS</button>
-        <button class="btn" onclick="clearInfo()">CLEAR</button>
         <div id="info"></div>
     </div>
 
@@ -56,6 +70,8 @@
                 <p>IDENTITY: UNKNOWN_ERROR_404</p>
                 <p>LOCATION: 152.42.999.777</p>
                 <p>STATUS: ONLINE</p>
+                <p>SECURITY LEVEL: HIGH</p>
+                <p>LAST LOGIN: UNKNOWN</p>
             `;
         }
         
@@ -64,11 +80,9 @@
                 <p><a href="https://github.com/" target="_blank">GitHub</a></p>
                 <p><a href="https://www.hackthebox.com/" target="_blank">Hack The Box</a></p>
                 <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
+                <p><a href="https://www.cybersecuritytraining.com/" target="_blank">Cyber Security Training</a></p>
+                <p><a href="https://www.nmap.org/" target="_blank">Nmap</a></p>
             `;
-        }
-        
-        function clearInfo() {
-            document.getElementById("info").innerHTML = "";
         }
     </script>
 </body>
