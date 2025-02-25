@@ -137,75 +137,115 @@
         <div id="info"></div>
     </div>
 
-<script>
-    function startSite() {
-        document.querySelector('.start-screen').style.display = 'none';
-        document.getElementById("main-content").style.display = "flex";
-        document.getElementById("bg-music").play();
-        sear();  // Inicia a função de animação
-    }
+    <script>
+        function startSite() {
+            document.querySelector('.start-screen').style.display = 'none';
+            document.getElementById("main-content").style.display = "flex";
+            document.getElementById("bg-music").play();
+            sear();  // Inicia a função de animação
+        }
 
-    function sear() {
-        let text = "SEAR"; // Começa com o texto "SEAR"
-        let element = document.getElementById("titleText");
-        let i = 0;
-        let stage = 0;
+        function sear() {
+            let text = "S";
+            let element = document.getElementById("titleText");
+            let i = 0;
+            let stage = 0;
+            let letters = ['E', 'A', 'R'];
 
-        setInterval(function() {
-            if (stage === 0) {
-                // De "SEAR" para o efeito de apagar
-                if (i < 4) {
-                    if (i === 3) {
-                        // Substitui a última letra por um espaço
-                        text = text.slice(0, -1) + " ";
+            function changeText() {
+                if (stage === 0) {
+                    if (i < 3) {
+                        text += letters[i];
+                        i++;
+                        element.textContent = text;
                     } else {
-                        text = text.slice(0, -1);
+                        stage = 1;
+                        i = 0;
                     }
-                    i++;
-                } else {
-                    stage = 1;
-                    i = 0;
-                }
-            } else if (stage === 1) {
-                // De apagar para escrever novamente "SEAR"
-                if (i < 4) {
-                    // Adiciona as letras novamente
-                    text = text.slice(0, -1) + "SEAR".charAt(i);
-                    i++;
-                } else {
-                    stage = 0;
-                    i = 0;
+                } else if (stage === 1) {
+                    if (i < 3) {
+                        text = text.slice(0, -1);
+                        i++;
+                        element.textContent = text;
+                    } else {
+                        stage = 2;
+                        i = 0;
+                    }
+                } else if (stage === 2) {
+                    if (i < 3) {
+                        text += letters[i];
+                        i++;
+                        element.textContent = text;
+                    } else {
+                        stage = 3;
+                        i = 0;
+                    }
+                } else if (stage === 3) {
+                    if (i < 3) {
+                        text = text.slice(0, -1);
+                        i++;
+                        element.textContent = text;
+                    } else {
+                        stage = 4;
+                        i = 0;
+                    }
+                } else if (stage === 4) {
+                    if (i < 3) {
+                        text += letters[i];
+                        i++;
+                        element.textContent = text;
+                    } else {
+                        stage = 5;
+                        i = 0;
+                    }
+                } else if (stage === 5) {
+                    if (i < 2) {
+                        text = text.slice(0, -1);
+                        i++;
+                        element.textContent = text;
+                    } else {
+                        stage = 6;
+                        i = 0;
+                    }
+                } else if (stage === 6) {
+                    if (i < 1) {
+                        text = text.slice(0, -1);
+                        i++;
+                        element.textContent = text;
+                    } else {
+                        stage = 0;
+                        i = 0;
+                    }
                 }
             }
-            element.textContent = text;
-        }, 500);  // Intervalo entre as trocas de texto
-    }
-</script>
+
+            setInterval(changeText, 1000);  // Intervalo entre as trocas de texto
+        }
 
         function toggleInfo(type) {
             const infoDiv = document.getElementById("info");
             if (type === 'bio') {
-                infoDiv.innerHTML = 
+                infoDiv.innerHTML = `
                     <p>IDENTITY: UNKNOWN_ERROR_404</p>
                     <p>LOCATION: 152.42.999.777</p>
                     <p>STATUS: ONLINE</p>
                     <p>SECURITY LEVEL: LOW KKKKKKK</p>
                     <p>LAST LOGIN: UNKNOWN</p>
-                ;
+                `;
             } else if (type === 'links') {
-                infoDiv.innerHTML = 
+                infoDiv.innerHTML = `
                     <p><a href="https://github.com/" target="_blank">GitHub</a></p>
                     <p><a href="https://discord.com/users/1287491084787781732" target="_blank">Sear discord</a></p>
                     <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
                     <p><a href="https://www.cybersecuritytraining.com/" target="_blank">Cyber Security Training</a></p>
                     <p><a href="https://www.nmap.org/" target="_blank">Nmap</a></p>
-                ;
+                `;
             } else if (type === 'projects') {
-                infoDiv.innerHTML = 
+                infoDiv.innerHTML = `
                     <p>Project 1: <a href="#">O Lula</a></p>
                     <p>Project 2: <a href="#">O Bolsonaro</a></p>
                     <p>Project 3: <a href="#">O Getúlio Vargas </a></p>
-                ;
+                `;
             }
 
             // Toggle the display of the info div
