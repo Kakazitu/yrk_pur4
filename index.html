@@ -147,71 +147,71 @@
 
         function sear() {
             let text = "S";
+            let element = document.getElementById("titleText");
             let i = 0;
             let stage = 0;
             let letters = ['E', 'A', 'R'];
 
-            function changeTitleText() {
-                let titleElement = document.title; // Pega o título da página
+            function changeText() {
                 if (stage === 0) {
                     if (i < 3) {
-                        titleElement += letters[i];
+                        text += letters[i];
                         i++;
-                        document.title = titleElement; // Atualiza o título
+                        element.textContent = text;
                     } else {
                         stage = 1;
                         i = 0;
                     }
                 } else if (stage === 1) {
                     if (i < 3) {
-                        titleElement = titleElement.slice(0, -1);
+                        text = text.slice(0, -1);
                         i++;
-                        document.title = titleElement;
+                        element.textContent = text;
                     } else {
                         stage = 2;
                         i = 0;
                     }
                 } else if (stage === 2) {
                     if (i < 3) {
-                        titleElement += letters[i];
+                        text += letters[i];
                         i++;
-                        document.title = titleElement;
+                        element.textContent = text;
                     } else {
                         stage = 3;
                         i = 0;
                     }
                 } else if (stage === 3) {
                     if (i < 3) {
-                        titleElement = titleElement.slice(0, -1);
+                        text = text.slice(0, -1);
                         i++;
-                        document.title = titleElement;
+                        element.textContent = text;
                     } else {
                         stage = 4;
                         i = 0;
                     }
                 } else if (stage === 4) {
                     if (i < 3) {
-                        titleElement += letters[i];
+                        text += letters[i];
                         i++;
-                        document.title = titleElement;
+                        element.textContent = text;
                     } else {
                         stage = 5;
                         i = 0;
                     }
                 } else if (stage === 5) {
                     if (i < 2) {
-                        titleElement = titleElement.slice(0, -1);
+                        text = text.slice(0, -1);
                         i++;
-                        document.title = titleElement;
+                        element.textContent = text;
                     } else {
                         stage = 6;
                         i = 0;
                     }
                 } else if (stage === 6) {
                     if (i < 1) {
-                        titleElement = titleElement.slice(0, -1);
+                        text = text.slice(0, -1);
                         i++;
-                        document.title = titleElement;
+                        element.textContent = text;
                     } else {
                         stage = 0;
                         i = 0;
@@ -219,7 +219,7 @@
                 }
             }
 
-            setInterval(changeTitleText, 1000);  // Intervalo entre as trocas de texto
+            setInterval(changeText, 1000);  // Intervalo entre as trocas de texto
         }
 
         function toggleInfo(type) {
