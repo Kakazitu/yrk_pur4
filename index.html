@@ -145,35 +145,34 @@
             sear();  // Inicia a função de animação
         }
 
-        function sear() {
-            let text = "SEAR"; // Começa com o texto "SEAR"
-            let element = document.getElementById("titleText");
-            let i = 0;
-            let stage = 0;
+<script>
+    function sear() {
+        let fullText = "SEAR";
+        let element = document.getElementById("titleText");
+        let i = 0;
+        let stage = 0; // 0: apagando até "S", 1: escrevendo até "SEAR"
 
-            setInterval(function() {
-                if (stage === 0) {
-                    // De "SEAR" para o efeito de apagar
-                    if (i < 4) {
-                        text = text.slice(0, -1);
-                        i++;
-                    } else {
-                        stage = 1;
-                        i = 0;
-                    }
-                } else if (stage === 1) {
-                    // De apagar para escrever novamente "SEAR"
-                    if (i < 4) {
-                        text += "SEAR".charAt(i);
-                        i++;
-                    } else {
-                        stage = 0;
-                        i = 0;
-                    }
+        setInterval(function() {
+            if (stage === 0) {
+                if (i < 3) { // Apaga até "S"
+                    i++;
+                } else {
+                    stage = 1;
+                    i--;
                 }
-                element.textContent = text;
-            }, 500);  // Intervalo entre as trocas de texto
-        }
+            } else if (stage === 1) {
+                if (i > 0) { // Volta a escrever até "SEAR"
+                    i--;
+                } else {
+                    stage = 0;
+                    i++;
+                }
+            }
+            element.textContent = fullText.slice(0, fullText.length - i);
+        }, 500); 
+    }
+</script>
+
 
         function toggleInfo(type) {
             const infoDiv = document.getElementById("info");
