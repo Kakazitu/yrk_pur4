@@ -13,6 +13,11 @@
             margin: 0;
             padding: 0;
             animation: bg-flicker 3s infinite alternate;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
 
         @keyframes bg-flicker {
@@ -21,10 +26,14 @@
         }
 
         .container {
-            margin-top: 50px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
         }
 
         .profile-pic {
@@ -72,6 +81,8 @@
             max-width: 80%;
             animation: text-fade 1s ease-in-out;
             display: none;
+            color: #ffffff;
+            text-align: left;
         }
 
         @keyframes text-fade {
@@ -180,37 +191,36 @@
             element.textContent = text;
         }, 500);  // Intervalo entre as trocas de texto
     }
-</script>
 
-        function toggleInfo(type) {
-            const infoDiv = document.getElementById("info");
-            if (type === 'bio') {
-                infoDiv.innerHTML = `
-                    <p>IDENTITY: UNKNOWN_ERROR_404</p>
-                    <p>LOCATION: 152.42.999.777</p>
-                    <p>STATUS: ONLINE</p>
-                    <p>SECURITY LEVEL: LOW KKKKKKK</p>
-                    <p>LAST LOGIN: UNKNOWN</p>
-                `;
-            } else if (type === 'links') {
-                infoDiv.innerHTML = `
-                    <p><a href="https://github.com/" target="_blank">GitHub</a></p>
-                    <p><a href="https://discord.com/users/1287491084787781732" target="_blank">Sear discord</a></p>
-                    <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
-                    <p><a href="https://www.cybersecuritytraining.com/" target="_blank">Cyber Security Training</a></p>
-                    <p><a href="https://www.nmap.org/" target="_blank">Nmap</a></p>
-                `;
-            } else if (type === 'projects') {
-                infoDiv.innerHTML = `
-                    <p>Project 1: <a href="#">O Lula</a></p>
-                    <p>Project 2: <a href="#">O Bolsonaro</a></p>
-                    <p>Project 3: <a href="#">O Getúlio Vargas </a></p>
-                `;
-            }
-
-            // Toggle the display of the info div
-            infoDiv.style.display = infoDiv.style.display === 'block' ? 'none' : 'block';
+    function toggleInfo(type) {
+        const infoDiv = document.getElementById("info");
+        if (type === 'bio') {
+            infoDiv.innerHTML = `
+                <p>IDENTITY: UNKNOWN_ERROR_404</p>
+                <p>LOCATION: 152.42.999.777</p>
+                <p>STATUS: ONLINE</p>
+                <p>SECURITY LEVEL: LOW KKKKKKK</p>
+                <p>LAST LOGIN: UNKNOWN</p>
+            `;
+        } else if (type === 'links') {
+            infoDiv.innerHTML = `
+                <p><a href="https://github.com/" target="_blank">GitHub</a></p>
+                <p><a href="https://discord.com/users/1287491084787781732" target="_blank">Sear discord</a></p>
+                <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
+                <p><a href="https://www.cybersecuritytraining.com/" target="_blank">Cyber Security Training</a></p>
+                <p><a href="https://www.nmap.org/" target="_blank">Nmap</a></p>
+            `;
+        } else if (type === 'projects') {
+            infoDiv.innerHTML = `
+                <p>Project 1: <a href="#">O Lula</a></p>
+                <p>Project 2: <a href="#">O Bolsonaro</a></p>
+                <p>Project 3: <a href="#">O Getúlio Vargas </a></p>
+            `;
         }
-    </script>
+
+        // Toggle the display of the info div
+        infoDiv.style.display = infoDiv.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
 </body>
 </html>
