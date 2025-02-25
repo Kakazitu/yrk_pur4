@@ -130,7 +130,7 @@
     
     <div class="container" style="display: none;" id="main-content">
         <div class="profile-pic"></div>
-        <h1 class="blinking-text">SEAR</h1>
+        <h1 class="blinking-text" id="titleText">SEAR</h1>
         <button class="btn" onclick="toggleInfo('bio')">BIO</button>
         <button class="btn" onclick="toggleInfo('links')">LINKS</button>
         <button class="btn" onclick="toggleInfo('projects')">PROJECTS</button>
@@ -138,46 +138,89 @@
     </div>
 
     <script>
-        let titleText = 'SEAR';
-        let i = 0;
-        let typing = true;
-        let currentTitle = '';
-        let delay = 150; // Tempo de digitação
-        let eraseDelay = 100; // Tempo de apagamento
-
         function startSite() {
             document.querySelector('.start-screen').style.display = 'none';
             document.getElementById("main-content").style.display = "flex";
             document.getElementById("bg-music").play();
+            sear();  // Inicia a função de animação
         }
 
-        function updateTitle() {
-            if (typing) {
-                currentTitle = titleText.substring(0, i);
-                i++;
-                if (i > titleText.length) {
-                    typing = false;
-                    setTimeout(updateTitle, 1000); // Aguarda um tempo após digitar tudo antes de apagar
-                    return;
-                }
-            } else {
-                currentTitle = titleText.substring(0, i);
-                i--;
-                if (i <= 0) {
-                    typing = true;
-                    setTimeout(updateTitle, 500); // Aguarda um tempo após apagar tudo antes de recomeçar a digitar
-                    return;
-                }
-            }
+        function sear() {
+            let text = "S";
+            let element = document.getElementById("titleText");
+            let i = 1;
+            let stage = 0;
 
-            // Muda apenas o título da página, sem incluir o link
-            document.title = currentTitle;
+            setInterval(function() {
+                if (stage === 0) {
+                    if (i < 4) {
+                        text += "E".charAt(i - 1);
+                        i++;
+                    } else {
+                        stage = 1;
+                        i = 0;
+                    }
+                } else if (stage === 1) {
+                    if (i < 3) {
+                        text = text.slice(0, -1);
+                        i++;
+                    } else {
+                        stage = 2;
+                        i = 0;
+                    }
+                } else if (stage === 2) {
+                    if (i < 4) {
+                        text += "A".charAt(i);
+                        i++;
+                    } else {
+                        stage = 3;
+                        i = 0;
+                    }
+                } else if (stage === 3) {
+                    if (i < 4) {
+                        text = text.slice(0, -1);
+                        i++;
+                    } else {
+                        stage = 4;
+                        i = 0;
+                    }
+                } else if (stage === 4) {
+                    if (i < 4) {
+                        text += "R".charAt(i);
+                        i++;
+                    } else {
+                        stage = 5;
+                        i = 0;
+                    }
+                } else if (stage === 5) {
+                    if (i < 3) {
+                        text = text.slice(0, -1);
+                        i++;
+                    } else {
+                        stage = 6;
+                        i = 0;
+                    }
+                } else if (stage === 6) {
+                    if (i < 2) {
+                        text = text.slice(0, -1);
+                        i++;
+                    } else {
+                        stage = 7;
+                        i = 0;
+                    }
+                } else if (stage === 7) {
+                    if (i < 1) {
+                        text = text.slice(0, -1);
+                        i++;
+                    } else {
+                        stage = 0;
+                        i = 0;
+                    }
+                }
 
-            // Ajusta o tempo de digitação e apagamento para suavizar o efeito
-            setTimeout(updateTitle, typing ? delay : eraseDelay);
+                element.textContent = text;
+            }, 1000);  // Intervalo entre as trocas de texto
         }
-
-        updateTitle(); // Inicializa o efeito
 
         function toggleInfo(type) {
             const infoDiv = document.getElementById("info");
