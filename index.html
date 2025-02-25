@@ -12,6 +12,11 @@
             text-align: center;
             margin: 0;
             padding: 0;
+            animation: bg-flicker 3s infinite alternate;
+        }
+        @keyframes bg-flicker {
+            0% { background-color: black; }
+            100% { background-color: #001100; }
         }
         .container {
             margin-top: 50px;
@@ -27,6 +32,11 @@
             background: url('photo1.jpg') center/cover;
             display: block;
             margin-bottom: 15px;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #00ff00; }
+            100% { box-shadow: 0 0 15px #00ff00; }
         }
         .btn {
             background-color: transparent;
@@ -37,25 +47,39 @@
             cursor: pointer;
             font-size: 18px;
             width: 200px;
+            transition: transform 0.2s;
         }
         .btn:hover {
             background-color: #00ff00;
             color: black;
+            transform: scale(1.1);
         }
         #info {
             margin-top: 20px;
             max-width: 80%;
+            animation: text-fade 1s ease-in-out;
+        }
+        @keyframes text-fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         a {
             color: #00ff00;
             text-decoration: none;
+            transition: color 0.3s;
         }
         a:hover {
             text-decoration: underline;
+            color: #55ff55;
         }
     </style>
 </head>
 <body>
+    <audio autoplay loop>
+        <source src="som1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
     <div class="container">
         <div class="profile-pic"></div>
         <h1>SEAR</h1>
