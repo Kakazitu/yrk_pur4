@@ -121,85 +121,89 @@
     </style>
 </head>
 <body>
-    <div class="start-screen" onclick="startSite()">CLICK TO ENTER</div>
-    
-    <audio id="bg-music" loop>
-        <source src="som1.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    
-    <div class="container" style="display: none;" id="main-content">
-        <div class="profile-pic"></div>
-        <h1 id="titleText">SEAR</h1>
-        <button class="btn" onclick="toggleInfo('bio')">BIO</button>
-        <button class="btn" onclick="toggleInfo('links')">LINKS</button>
-        <button class="btn" onclick="toggleInfo('projects')">PROJECTS</button>
-        <div id="info"></div>
-    </div>
+<div class="start-screen" onclick="startSite()">CLICK TO ENTER</div>
 
-    <script>
-        function startSite() {
-            document.querySelector('.start-screen').style.display = 'none';
-            document.getElementById("main-content").style.display = "flex";
-            document.getElementById("bg-music").play();
-            animateText();
-        }
+<audio id="bg-music" loop>
+    <source src="som1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
-        function animateText() {
-            let fullText = "SEAR";
-            let element = document.getElementById("titleText");
-            let index = fullText.length;
-            let reverse = false;
+<div class="container" style="display: none;" id="main-content">
+    <div class="profile-pic"></div>
+    <h1 id="titleText">SEAR</h1>
+    <button class="btn" onclick="toggleInfo('bio')">BIO</button>
+    <button class="btn" onclick="toggleInfo('links')">LINKS</button>
+    <button class="btn" onclick="toggleInfo('projects')">PROJECTS</button>
+    <div id="info"></div>
+</div>
 
-            function updateText() {
-                element.textContent = fullText.slice(0, index);
-                if (!reverse) {
-                    index--;
-                    if (index === 1) reverse = true;
-                } else {
-                    index++;
-                    if (index === fullText.length) reverse = false;
-                }
-                setTimeout(updateText, 500);
-            }
-            updateText();
-        }
+<script>
+    function startSite() {
+        document.querySelector('.start-screen').style.display = 'none';
+        document.getElementById("main-content").style.display = "flex";
 
-        function toggleInfo(type) {
-            const infoDiv = document.getElementById("info");
-            let content = "";
+        let music = document.getElementById("bg-music");
+        music.volume = 0.5; // Volume reduzido para 50%
+        music.play();
+        
+        animateText();
+    }
 
-            if (type === 'bio') {
-                content = `
-                    <p>IDENTITY: UNKNOWN_ERROR_404</p>
-                    <p>LOCATION: 152.42.999.777</p>
-                    <p>STATUS: ONLINE</p>
-                    <p>SECURITY LEVEL: LOW KKKKKKK</p>
-                    <p>LAST LOGIN: UNKNOWN</p>
-                `;
-            } else if (type === 'links') {
-                content = `
-                    <p><a href="https://github.com/" target="_blank">GitHub</a></p>
-                    <p><a href="https://discord.com/users/1287491084787781732" target="_blank">Sear Discord</a></p>
-                    <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
-                    <p><a href="https://www.nmap.org/" target="_blank">Nmap</a></p>
-                `;
-            } else if (type === 'projects') {
-                content = `
-                    <p>Project 1: <a href="#">O Lula</a></p>
-                    <p>Project 2: <a href="#">O Bolsonaro</a></p>
-                    <p>Project 3: <a href="#">O Getúlio Vargas</a></p>
-                `;
-            }
+    function animateText() {
+        let fullText = "SEAR";
+        let element = document.getElementById("titleText");
+        let index = fullText.length;
+        let reverse = false;
 
-            if (infoDiv.innerHTML === content) {
-                infoDiv.style.display = 'none';
-                infoDiv.innerHTML = "";
+        function updateText() {
+            element.textContent = fullText.slice(0, index);
+            if (!reverse) {
+                index--;
+                if (index === 1) reverse = true;
             } else {
-                infoDiv.innerHTML = content;
-                infoDiv.style.display = 'block';
+                index++;
+                if (index === fullText.length) reverse = false;
             }
+            setTimeout(updateText, 500);
         }
-    </script>
+        updateText();
+    }
+
+    function toggleInfo(type) {
+        const infoDiv = document.getElementById("info");
+        let content = "";
+
+        if (type === 'bio') {
+            content = `
+                <p>IDENTITY: UNKNOWN_ERROR_404</p>
+                <p>LOCATION: 152.42.999.777</p>
+                <p>STATUS: ONLINE</p>
+                <p>SECURITY LEVEL: LOW KKKKKKK</p>
+                <p>LAST LOGIN: UNKNOWN</p>
+            `;
+        } else if (type === 'links') {
+            content = `
+                <p><a href="https://github.com/" target="_blank">GitHub</a></p>
+                <p><a href="https://discord.com/users/1287491084787781732" target="_blank">Sear Discord</a></p>
+                <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
+                <p><a href="https://www.nmap.org/" target="_blank">Nmap</a></p>
+            `;
+        } else if (type === 'projects') {
+            content = `
+                <p>Project 1: <a href="#">O Lula</a></p>
+                <p>Project 2: <a href="#">O Bolsonaro</a></p>
+                <p>Project 3: <a href="#">O Getúlio Vargas</a></p>
+            `;
+        }
+
+        if (infoDiv.innerHTML === content) {
+            infoDiv.style.display = 'none';
+            infoDiv.innerHTML = "";
+        } else {
+            infoDiv.innerHTML = content;
+            infoDiv.style.display = 'block';
+        }
+    }
+</script>
 </body>
 </html>
