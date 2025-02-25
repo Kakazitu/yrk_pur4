@@ -137,43 +137,50 @@
         <div id="info"></div>
     </div>
 
-    <script>
-        function startSite() {
-            document.querySelector('.start-screen').style.display = 'none';
-            document.getElementById("main-content").style.display = "flex";
-            document.getElementById("bg-music").play();
-            sear();  // Inicia a função de animação
-        }
+<script>
+    function startSite() {
+        document.querySelector('.start-screen').style.display = 'none';
+        document.getElementById("main-content").style.display = "flex";
+        document.getElementById("bg-music").play();
+        sear();  // Inicia a função de animação
+    }
 
-        function sear() {
-            let text = "SEAR"; // Começa com o texto "SEAR"
-            let element = document.getElementById("titleText");
-            let i = 0;
-            let stage = 0;
+    function sear() {
+        let text = "SEAR"; // Começa com o texto "SEAR"
+        let element = document.getElementById("titleText");
+        let i = 0;
+        let stage = 0;
 
-            setInterval(function() {
-                if (stage === 0) {
-                    // De "SEAR" para o efeito de apagar
-                    if (i < 4) {
+        setInterval(function() {
+            if (stage === 0) {
+                // De "SEAR" para o efeito de apagar
+                if (i < 4) {
+                    if (i === 3) {
+                        // Substitui a última letra por um espaço
+                        text = text.slice(0, -1) + " ";
+                    } else {
                         text = text.slice(0, -1);
-                        i++;
-                    } else {
-                        stage = 1;
-                        i = 0;
                     }
-                } else if (stage === 1) {
-                    // De apagar para escrever novamente "SEAR"
-                    if (i < 4) {
-                        text += "SEAR".charAt(i);
-                        i++;
-                    } else {
-                        stage = 0;
-                        i = 0;
-                    }
+                    i++;
+                } else {
+                    stage = 1;
+                    i = 0;
                 }
-                element.textContent = text;
-            }, 500);  // Intervalo entre as trocas de texto
-        }
+            } else if (stage === 1) {
+                // De apagar para escrever novamente "SEAR"
+                if (i < 4) {
+                    // Adiciona as letras novamente
+                    text = text.slice(0, -1) + "SEAR".charAt(i);
+                    i++;
+                } else {
+                    stage = 0;
+                    i = 0;
+                }
+            }
+            element.textContent = text;
+        }, 500);  // Intervalo entre as trocas de texto
+    }
+</script>
 
         function toggleInfo(type) {
             const infoDiv = document.getElementById("info");
