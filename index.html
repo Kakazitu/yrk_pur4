@@ -72,15 +72,33 @@
             text-decoration: underline;
             color: #55ff55;
         }
+        .start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #00ff00;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            animation: text-fade 2s infinite alternate;
+        }
     </style>
 </head>
 <body>
-    <audio autoplay loop>
+    <div class="start-screen" onclick="startSite()">CLICK TO ENTER</div>
+    
+    <audio id="bg-music" loop>
         <source src="som1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     
-    <div class="container">
+    <div class="container" style="display: none;" id="main-content">
         <div class="profile-pic"></div>
         <h1>SEAR</h1>
         <button class="btn" onclick="showBio()">BIO</button>
@@ -89,6 +107,12 @@
     </div>
 
     <script>
+        function startSite() {
+            document.querySelector('.start-screen').style.display = 'none';
+            document.getElementById("main-content").style.display = "flex";
+            document.getElementById("bg-music").play();
+        }
+
         function showBio() {
             document.getElementById("info").innerHTML = `
                 <p>IDENTITY: UNKNOWN_ERROR_404</p>
@@ -102,7 +126,7 @@
         function showLinks() {
             document.getElementById("info").innerHTML = `
                 <p><a href="https://github.com/" target="_blank">GitHub</a></p>
-                <p><a href="https://www.hackthebox.com/" target="_blank">Hack The Box</a></p>
+                <p><a href="https://discord.com/users/1287491084787781732" target="_blank">SEAR Discord</a></p>
                 <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
                 <p><a href="https://www.cybersecuritytraining.com/" target="_blank">Cyber Security Training</a></p>
                 <p><a href="https://www.nmap.org/" target="_blank">Nmap</a></p>
