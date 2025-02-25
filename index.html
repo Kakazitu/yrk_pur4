@@ -148,14 +148,16 @@
         function sear() {
             let text = "S";
             let element = document.getElementById("titleText");
-            let i = 1;
+            let i = 0;
             let stage = 0;
+            let letters = ['E', 'A', 'R'];
 
-            setInterval(function() {
+            function changeText() {
                 if (stage === 0) {
-                    if (i < 4) {
-                        text += "E".charAt(i - 1);
+                    if (i < 3) {
+                        text += letters[i];
                         i++;
+                        element.textContent = text;
                     } else {
                         stage = 1;
                         i = 0;
@@ -164,62 +166,60 @@
                     if (i < 3) {
                         text = text.slice(0, -1);
                         i++;
+                        element.textContent = text;
                     } else {
                         stage = 2;
                         i = 0;
                     }
                 } else if (stage === 2) {
-                    if (i < 4) {
-                        text += "A".charAt(i);
+                    if (i < 3) {
+                        text += letters[i];
                         i++;
+                        element.textContent = text;
                     } else {
                         stage = 3;
                         i = 0;
                     }
                 } else if (stage === 3) {
-                    if (i < 4) {
+                    if (i < 3) {
                         text = text.slice(0, -1);
                         i++;
+                        element.textContent = text;
                     } else {
                         stage = 4;
                         i = 0;
                     }
                 } else if (stage === 4) {
-                    if (i < 4) {
-                        text += "R".charAt(i);
+                    if (i < 3) {
+                        text += letters[i];
                         i++;
+                        element.textContent = text;
                     } else {
                         stage = 5;
                         i = 0;
                     }
                 } else if (stage === 5) {
-                    if (i < 3) {
+                    if (i < 2) {
                         text = text.slice(0, -1);
                         i++;
+                        element.textContent = text;
                     } else {
                         stage = 6;
                         i = 0;
                     }
                 } else if (stage === 6) {
-                    if (i < 2) {
-                        text = text.slice(0, -1);
-                        i++;
-                    } else {
-                        stage = 7;
-                        i = 0;
-                    }
-                } else if (stage === 7) {
                     if (i < 1) {
                         text = text.slice(0, -1);
                         i++;
+                        element.textContent = text;
                     } else {
                         stage = 0;
                         i = 0;
                     }
                 }
+            }
 
-                element.textContent = text;
-            }, 1000);  // Intervalo entre as trocas de texto
+            setInterval(changeText, 1000);  // Intervalo entre as trocas de texto
         }
 
         function toggleInfo(type) {
