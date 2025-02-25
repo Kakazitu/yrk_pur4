@@ -142,12 +142,12 @@
             document.querySelector('.start-screen').style.display = 'none';
             document.getElementById("main-content").style.display = "flex";
             document.getElementById("bg-music").play();
-            sear();  // Inicia a função de animação
+            searTitle();  // Inicia a função para animar o título da aba
         }
 
-        function sear() {
+        function searTitle() {
             let text = "S";
-            let element = document.getElementById("titleText");
+            let element = document.querySelector("title");
             let i = 0;
             let stage = 0;
             let letters = ['E', 'A', 'R'];
@@ -157,7 +157,7 @@
                     if (i < 3) {
                         text += letters[i];
                         i++;
-                        element.textContent = text;
+                        element.textContent = text;  // Atualiza o título da aba
                     } else {
                         stage = 1;
                         i = 0;
