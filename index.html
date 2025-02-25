@@ -124,11 +124,36 @@
     </div>
 
     <script>
+        let titleText = 'SEAR';
+        let i = 0;
+        let typing = true;
+        let currentTitle = '';
+        
         function startSite() {
             document.querySelector('.start-screen').style.display = 'none';
             document.getElementById("main-content").style.display = "flex";
             document.getElementById("bg-music").play();
         }
+
+        function updateTitle() {
+            if (typing) {
+                currentTitle = titleText.substring(0, i);
+                i++;
+                if (i > titleText.length) {
+                    typing = false;
+                }
+            } else {
+                currentTitle = titleText.substring(0, i);
+                i--;
+                if (i <= 0) {
+                    typing = true;
+                }
+            }
+            document.title = currentTitle;
+            setTimeout(updateTitle, 150); // Adjust speed of typing and deleting
+        }
+
+        updateTitle(); // Initialize the effect
 
         function toggleInfo(type) {
             const infoDiv = document.getElementById("info");
@@ -150,9 +175,9 @@
                 `;
             } else if (type === 'projects') {
                 infoDiv.innerHTML = `
-                    <p>Project 1: <a href="#">Dark Web Scanner</a></p>
-                    <p>Project 2: <a href="#">AI-Based Encryption</a></p>
-                    <p>Project 3: <a href="#">OSINT Tool</a></p>
+                    <p>Project 1: <a href="#">O Lula</a></p>
+                    <p>Project 2: <a href="#">O Bolsonaro</a></p>
+                    <p>Project 3: <a href="#">O Getúlio Vargas </a></p>
                 `;
             }
 
