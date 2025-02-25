@@ -128,7 +128,9 @@
         let i = 0;
         let typing = true;
         let currentTitle = '';
-        
+        let delay = 150; // Tempo de digitação
+        let eraseDelay = 100; // Tempo de apagamento
+
         function startSite() {
             document.querySelector('.start-screen').style.display = 'none';
             document.getElementById("main-content").style.display = "flex";
@@ -141,19 +143,27 @@
                 i++;
                 if (i > titleText.length) {
                     typing = false;
+                    setTimeout(updateTitle, 1000); // Aguarda um tempo após digitar tudo antes de apagar
+                    return;
                 }
             } else {
                 currentTitle = titleText.substring(0, i);
                 i--;
                 if (i <= 0) {
                     typing = true;
+                    setTimeout(updateTitle, 500); // Aguarda um tempo após apagar tudo antes de recomeçar a digitar
+                    return;
                 }
             }
+
+            // Muda apenas o título da página, sem incluir o link
             document.title = currentTitle;
-            setTimeout(updateTitle, 150); // Adjust speed of typing and deleting
+
+            // Ajusta o tempo de digitação e apagamento para suavizar o efeito
+            setTimeout(updateTitle, typing ? delay : eraseDelay);
         }
 
-        updateTitle(); // Initialize the effect
+        updateTitle(); // Inicializa o efeito
 
         function toggleInfo(type) {
             const infoDiv = document.getElementById("info");
