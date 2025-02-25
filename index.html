@@ -13,11 +13,10 @@
             margin: 0;
             padding: 0;
             animation: bg-flicker 3s infinite alternate;
-            height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: space-between;
         }
 
         @keyframes bg-flicker {
@@ -26,14 +25,12 @@
         }
 
         .container {
+            margin-top: 50px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
+            justify-content: center;
+            flex-grow: 1;
         }
 
         .profile-pic {
@@ -81,8 +78,6 @@
             max-width: 80%;
             animation: text-fade 1s ease-in-out;
             display: none;
-            color: #ffffff;
-            text-align: left;
         }
 
         @keyframes text-fade {
@@ -129,6 +124,17 @@
             0% { transform: skewX(0deg); }
             100% { transform: skewX(5deg); }
         }
+
+        /* Fixando os botões na parte inferior */
+        .button-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -142,85 +148,86 @@
     <div class="container" style="display: none;" id="main-content">
         <div class="profile-pic"></div>
         <h1 class="blinking-text" id="titleText">SEAR</h1>
+    </div>
+
+    <div class="button-container">
         <button class="btn" onclick="toggleInfo('bio')">BIO</button>
         <button class="btn" onclick="toggleInfo('links')">LINKS</button>
         <button class="btn" onclick="toggleInfo('projects')">PROJECTS</button>
-        <div id="info"></div>
     </div>
+    
+    <div id="info"></div>
 
-<script>
-    function startSite() {
-        document.querySelector('.start-screen').style.display = 'none';
-        document.getElementById("main-content").style.display = "flex";
-        document.getElementById("bg-music").play();
-        sear();  // Inicia a função de animação
-    }
-
-    function sear() {
-        let text = "SEAR"; // Começa com o texto "SEAR"
-        let element = document.getElementById("titleText");
-        let i = 0;
-        let stage = 0;
-
-        setInterval(function() {
-            if (stage === 0) {
-                // De "SEAR" para o efeito de apagar
-                if (i < 4) {
-                    if (i === 3) {
-                        // Substitui a última letra por um espaço
-                        text = text.slice(0, -1) + " ";
-                    } else {
-                        text = text.slice(0, -1);
-                    }
-                    i++;
-                } else {
-                    stage = 1;
-                    i = 0;
-                }
-            } else if (stage === 1) {
-                // De apagar para escrever novamente "SEAR"
-                if (i < 4) {
-                    // Adiciona as letras novamente
-                    text = text.slice(0, -1) + "SEAR".charAt(i);
-                    i++;
-                } else {
-                    stage = 0;
-                    i = 0;
-                }
-            }
-            element.textContent = text;
-        }, 500);  // Intervalo entre as trocas de texto
-    }
-
-    function toggleInfo(type) {
-        const infoDiv = document.getElementById("info");
-        if (type === 'bio') {
-            infoDiv.innerHTML = `
-                <p>IDENTITY: UNKNOWN_ERROR_404</p>
-                <p>LOCATION: 152.42.999.777</p>
-                <p>STATUS: ONLINE</p>
-                <p>SECURITY LEVEL: LOW KKKKKKK</p>
-                <p>LAST LOGIN: UNKNOWN</p>
-            `;
-        } else if (type === 'links') {
-            infoDiv.innerHTML = `
-                <p><a href="https://github.com/" target="_blank">GitHub</a></p>
-                <p><a href="https://discord.com/users/1287491084787781732" target="_blank">Sear discord</a></p>
-                <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
-                <p><a href="https://www.cybersecuritytraining.com/" target="_blank">Cyber Security Training</a></p>
-                <p><a href="https://www.nmap.org/" target="_blank">Nmap</a></p>
-            `;
-        } else if (type === 'projects') {
-            infoDiv.innerHTML = `
-                <p>Project 1: <a href="#">O Lula</a></p>
-                <p>Project 2: <a href="#">O Bolsonaro</a></p>
-                <p>Project 3: <a href="#">O Getúlio Vargas </a></p>
-            `;
+    <script>
+        function startSite() {
+            document.querySelector('.start-screen').style.display = 'none';
+            document.getElementById("main-content").style.display = "flex";
+            document.getElementById("bg-music").play();
+            sear();  // Inicia a função de animação
         }
 
-        // Toggle the display of the info div
-        infoDiv.style.display = infoDiv.style.display === 'block' ? 'none' : 'block';
-    }
-</script>
+        function sear() {
+            let text = "SEAR"; // Começa com o texto "SEAR"
+            let element = document.getElementById("titleText");
+            let i = 0;
+            let stage = 0;
+
+            setInterval(function() {
+                if (stage === 0) {
+                    // De "SEAR" para o efeito de apagar
+                    if (i < 4) {
+                        if (i === 3) {
+                            // Substitui a última letra por um espaço
+                            text = text.slice(0, -1) + " ";
+                        } else {
+                            text = text.slice(0, -1);
+                        }
+                        i++;
+                    } else {
+                        stage = 1;
+                        i = 0;
+                    }
+                } else if (stage === 1) {
+                    // De apagar para escrever novamente "SEAR"
+                    if (i < 4) {
+                        // Adiciona as letras novamente
+                        text = text.slice(0, -1) + "SEAR".charAt(i);
+                        i++;
+                    } else {
+                        stage = 0;
+                        i = 0;
+                    }
+                }
+                element.textContent = text;
+            }, 500);  // Intervalo entre as trocas de texto
+        }
+
+        function toggleInfo(type) {
+            const infoDiv = document.getElementById("info");
+            if (type === 'bio') {
+                infoDiv.innerHTML = 
+                    "<p>IDENTITY: UNKNOWN_ERROR_404</p>" +
+                    "<p>LOCATION: 152.42.999.777</p>" +
+                    "<p>STATUS: ONLINE</p>" +
+                    "<p>SECURITY LEVEL: LOW KKKKKKK</p>" +
+                    "<p>LAST LOGIN: UNKNOWN</p>";
+            } else if (type === 'links') {
+                infoDiv.innerHTML = 
+                    "<p><a href='https://github.com/' target='_blank'>GitHub</a></p>" +
+                    "<p><a href='https://discord.com/users/1287491084787781732' target='_blank'>Sear discord</a></p>" +
+                    "<p><a href='https://www.kali.org/' target='_blank'>Kali Linux</a></p>" +
+                    "<p><a href='https://www.cybersecuritytraining.com/' target='_blank'>Cyber Security Training</a></p>" +
+                    "<p><a href='https://www.nmap.org/' target='_blank'>Nmap</a></p>";
+            } else if (type === 'projects') {
+                infoDiv.innerHTML = 
+                    "<p>Project 1: <a href='#'>O Lula</a></p>" +
+                    "<p>Project 2: <a href='#'>O Bolsonaro</a></p>" +
+                    "<p>Project 3: <a href='#'>O Getúlio Vargas</a></p>";
+            }
+
+            // Toggle the display of the info div
+            infoDiv.style.display = infoDiv.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
 </body>
 </html>
