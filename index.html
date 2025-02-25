@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacker Bio</title>
+    <title>SEAR</title>
     <style>
         body {
             background-color: black;
@@ -13,6 +13,14 @@
         }
         .container {
             margin-top: 100px;
+        }
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #00ff00;
+            border-radius: 50%;
+            background: url('photo1.jpg') center/cover;
+            display: inline-block;
         }
         .btn {
             background-color: transparent;
@@ -34,7 +42,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>HACKER BIO</h1>
+        <div class="profile-pic"></div>
+        <h1>SEAR</h1>
         <button class="btn" onclick="showBio()">BIO</button>
         <button class="btn" onclick="showLinks()">LINKS</button>
         <button class="btn" onclick="clearInfo()">CLEAR</button>
