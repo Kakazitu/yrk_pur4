@@ -63,6 +63,7 @@
             margin-top: 20px;
             max-width: 80%;
             animation: text-fade 1s ease-in-out;
+            display: none;
         }
         @keyframes text-fade {
             from { opacity: 0; }
@@ -115,10 +116,10 @@
     
     <div class="container" style="display: none;" id="main-content">
         <div class="profile-pic"></div>
-        <h1>SEAR</h1>
-        <button class="btn" onclick="showBio()">BIO</button>
-        <button class="btn" onclick="showLinks()">LINKS</button>
-        <button class="btn" onclick="showProjects()">PROJECTS</button>
+        <h1 class="blinking-text">SEAR</h1>
+        <button class="btn" onclick="toggleInfo('bio')">BIO</button>
+        <button class="btn" onclick="toggleInfo('links')">LINKS</button>
+        <button class="btn" onclick="toggleInfo('projects')">PROJECTS</button>
         <div id="info"></div>
     </div>
 
@@ -129,32 +130,34 @@
             document.getElementById("bg-music").play();
         }
 
-        function showBio() {
-            document.getElementById("info").innerHTML = `
-                <p>IDENTITY: UNKNOWN_ERROR_404</p>
-                <p>LOCATION: 152.42.999.777</p>
-                <p>STATUS: ONLINE</p>
-                <p>SECURITY LEVEL: LOW KKKKKKK</p>
-                <p>LAST LOGIN: UNKNOWN</p>
-            `;
-        }
-        
-        function showLinks() {
-            document.getElementById("info").innerHTML = `
-                <p><a href="https://github.com/" target="_blank">GitHub</a></p>
-                <p><a href="https://discord.com/users/1287491084787781732" target="_blank">Sear discord</a></p>
-                <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
-                <p><a href="https://www.cybersecuritytraining.com/" target="_blank">Cyber Security Training</a></p>
-                <p><a href="https://www.nmap.org/" target="_blank">Nmap</a></p>
-            `;
-        }
-        
-        function showProjects() {
-            document.getElementById("info").innerHTML = `
-                <p>Project 1: <a href="#">Dark Web Scanner</a></p>
-                <p>Project 2: <a href="#">AI-Based Encryption</a></p>
-                <p>Project 3: <a href="#">OSINT Tool</a></p>
-            `;
+        function toggleInfo(type) {
+            const infoDiv = document.getElementById("info");
+            if (type === 'bio') {
+                infoDiv.innerHTML = `
+                    <p>IDENTITY: UNKNOWN_ERROR_404</p>
+                    <p>LOCATION: 152.42.999.777</p>
+                    <p>STATUS: ONLINE</p>
+                    <p>SECURITY LEVEL: LOW KKKKKKK</p>
+                    <p>LAST LOGIN: UNKNOWN</p>
+                `;
+            } else if (type === 'links') {
+                infoDiv.innerHTML = `
+                    <p><a href="https://github.com/" target="_blank">GitHub</a></p>
+                    <p><a href="https://discord.com/users/1287491084787781732" target="_blank">Sear discord</a></p>
+                    <p><a href="https://www.kali.org/" target="_blank">Kali Linux</a></p>
+                    <p><a href="https://www.cybersecuritytraining.com/" target="_blank">Cyber Security Training</a></p>
+                    <p><a href="https://www.nmap.org/" target="_blank">Nmap</a></p>
+                `;
+            } else if (type === 'projects') {
+                infoDiv.innerHTML = `
+                    <p>Project 1: <a href="#">Dark Web Scanner</a></p>
+                    <p>Project 2: <a href="#">AI-Based Encryption</a></p>
+                    <p>Project 3: <a href="#">OSINT Tool</a></p>
+                `;
+            }
+
+            // Toggle the display of the info div
+            infoDiv.style.display = infoDiv.style.display === 'block' ? 'none' : 'block';
         }
     </script>
 </body>
